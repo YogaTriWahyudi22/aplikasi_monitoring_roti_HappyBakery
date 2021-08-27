@@ -26,7 +26,13 @@ session_start();
         <span class="fst-italic">Happy Bakery</span>
     </div>
     <div class="container my-5">
-        <h3>Cetak Laporan Roti Keluar</h3>
+        <?php
+        if (isset($_SESSION['tanggal_cek'])) {
+            echo '<h3>Laporan Roti Sampai</h3>';
+        } else {
+            echo '<h3> Data Keseluruhan </h3>';
+        }
+        ?>
         <div class="float-end">
             <?php
             $tgl = date('d-m-Y');
