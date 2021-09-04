@@ -42,9 +42,11 @@ include '../layouts/header.php';
             $query = mysqli_query($koneksi, "SELECT * FROM varian_rasa") or die(mysqli_error($koneksi));
             $no = 1;
             while ($t = mysqli_fetch_array($query)) {
-
+              $jumlah = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT SUM(jumlah) as jumlah FROM roti_keluar where id_rasa = '$t[id_rasa]' "));
             ?>
-              <option value="<?php echo $t[0]; ?>"><?php echo $t[1]; ?></option>
+              <option value="<?php echo $t[0]; ?>"><?php echo $t[1]; ?> <?php if (isset($jumlah)) {
+                                                                          echo '-- ' . $jumlah['jumlah'];
+                                                                        } ?></option>
             <?php } ?>
           </select>
 
